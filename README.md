@@ -1,6 +1,6 @@
 # ![Les Itérables](docs/source/_static/les_iterables.png)
 
-[![Documentation Status](https://readthedocs.org/projects/pip/badge/?version=stable)](https://pip.pypa.io/en/stable/?badge=stable)
+[![Documentation Status](https://readthedocs.org/projects/les-iterables/badge/?version=latest)](https://les-iterables.readthedocs.io/en/latest/?badge=latest)
       
 
 ## Installation
