@@ -14,8 +14,9 @@
 import glob
 import os
 import sys
+from pathlib import Path
 
-sys.path.insert(0, os.path.abspath(os.path.join("..", "..", "source")))
+sys.path.insert(0, Path(__file__).parent.parent.parent / "source")
 
 
 # -- Project information -----------------------------------------------------
@@ -24,6 +25,7 @@ project = 'Les Itérables'
 copyright = '2020, Sixty North'
 author = 'Sixty North'
 
+print(sys.path)
 import les_iterables
 
 # The full version, including alpha/beta/rc tags
