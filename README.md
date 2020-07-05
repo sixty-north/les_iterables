@@ -1,4 +1,4 @@
-# ![Les Itérables](docs/les_iterables.png)
+# ![Les Itérables](docs/source/_static/les_iterables.png)
 
 
 ## Installation

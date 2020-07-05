@@ -94,7 +94,7 @@ setup(
     # $ pip install -e .[dev,test]
     extras_require={
         'dev': ['check-manifest', 'wheel', 'bumpversion'],
-        'doc': ['sphinx', 'sphinx_rtd_theme'],
+        'doc': ['sphinx', 'sphinx_rtd_theme', 'better_apidoc'],
         'test': ['coverage', 'hypothesis', 'pytest'],
     },
 
