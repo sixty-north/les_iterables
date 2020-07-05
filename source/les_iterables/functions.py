@@ -83,3 +83,33 @@ def reject_falsey(iterable):
         An iterable series of items for which bool(item) is True.
     """
     return retain_truthy(iterable)
+
+
+def repeat_first(iterable):
+    """Repeat the first item from an iterable on the end.
+
+    Example:
+        >>> ''.join(repeat_first("ABDC"))
+        "ABCDA"
+
+    Useful for making a closed cycle out of elements.
+    If iterable is empty, the result will also be empty.
+
+    Args:
+        An iterable series of items.
+
+    Yields:
+        All items from iterables, followed by the first item from iterable.
+    """
+    iterator = iter(iterable)
+    try:
+        first = next(iterator)
+    except StopIteration:
+        return
+
+    yield first
+
+    for item in iterator:
+        yield item
+
+    yield first
