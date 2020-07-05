@@ -1,11 +1,11 @@
 from .version import __version__
-from .functions import (
+from les_iterables.selecting import (
     retain_if,
     reject_if,
     retain_truthy,
-    retain_falsey,
+    retain_falsy,
     reject_truthy,
-    reject_falsey,
+    reject_falsy
 )
 
 __all__ = [
@@ -13,7 +13,7 @@ __all__ = [
     "retain_if",
     "reject_if",
     "retain_truthy",
+    "retain_falsy",
     "reject_truthy",
-    "retain_falsey",
-    "reject_falsey",
+    "reject_falsy",
 ]
