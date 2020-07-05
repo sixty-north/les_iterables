@@ -29,7 +29,7 @@ import les_iterables
 # The full version, including alpha/beta/rc tags
 release = les_iterables.__version__
 
-
+master_doc = 'index'
 
 # -- General configuration ---------------------------------------------------
 
