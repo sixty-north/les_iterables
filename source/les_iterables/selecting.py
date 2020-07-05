@@ -4,6 +4,11 @@ from itertools import filterfalse
 def retain_if(predicate, iterable):
     """Retain those items for which predicate evaluates to True.
 
+    Example:
+
+        >>> list(retain_if(lambda x: x%2 == 0, range(10)))
+        [0, 2, 4, 6, 8]
+
     Args:
         predicate: A single-argument callable to which each item of iterable
             will be passed in turn to determine whether it should be retained,
@@ -21,6 +26,11 @@ def retain_if(predicate, iterable):
 
 def reject_if(predicate, iterable):
     """Retain those items for which predicate evaluates to True.
+
+    Example:
+
+        >>> list(reject_if(lambda x: x%2 == 0, range(10)))
+        [1, 3, 5, 7, 9]
 
     Args:
         predicate: A single-argument callable to which each item of iterable
