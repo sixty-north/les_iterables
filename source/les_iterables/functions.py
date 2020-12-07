@@ -273,4 +273,20 @@ def empty_iterable():
 
 
 def run_length_encode(items):
-    return ((key, len(list(group))) for key, group in groupby(items))
+    return ((key, len(list(group))) for key, group in itertools.groupby(items))
+
+
+def false_then_true():
+    """A single False value followed by True values.
+    """
+    yield False
+    while True:
+        yield True
+
+
+def true_then_false():
+    """A single True value followed by False values.
+    """
+    yield True
+    while True:
+        yield False
