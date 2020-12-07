@@ -118,3 +118,83 @@ def take_after_last_match(iterable, predicate):
         else:
             tail.append(item)
     return tail
+
+
+def first_matching(iterable, predicate):
+    for item in iterable:
+        if predicate(item):
+            return item
+    raise ValueError("No matching items")
+
+
+def take_after_inclusive(iterable, predicate):
+    """Yield items starting with the first match.
+
+    Args:
+        iterable: An iterable series of items.
+
+        predicate: A function of one argument used to select the first item.
+
+    Yields:
+        Items starting with the first match.
+    """
+    found = False
+    for item in iterable:
+        found = found or predicate(item)
+        if found:
+            yield item
+
+
+def take_before_inclusive(iterable, predicate):
+    """Yield items up to and including the first match.
+
+    Args:
+        iterable: An iterable series of items.
+
+        predicate: A function of one argument used to select the last item.
+
+    Returns:
+        A sequence of items finishing with the first match.
+    """
+    items = []
+    for item in iterable:
+        items.append(item)
+        if predicate(item):
+            return items
+    return []
+
+
+def take_between_inclusive(iterable, first_predicate, last_predicate):
+    """A list of items from the first matching to the last matching inclusive.
+
+    Args:
+        iterable: An iterable series of items.
+
+        first_predicate: A function of one argument used to select the first item in
+            the result.
+
+        last_predicate: A function of one argument used to select the last item in
+            the result.
+
+        Returns:
+             Either a sequence of at least two elements, or an empty sequence if elements
+             matching the first predicate and the last predicate were not both found.
+    """
+    return take_before_inclusive(take_after_inclusive(iterable, first_predicate), last_predicate)
+
+
+def take_between_inclusive_values(iterable, first, last):
+    """A list of items from the first matching to the last matching inclusive.
+
+    Args:
+        iterable: An iterable series of items.
+
+        first: A value marking the start of the result sequence.
+
+        last_predicate: A value marking the end of the result sequence.
+
+        Returns:
+             Either a sequence of at least two elements, or an empty sequence if elements
+             matching the first predicate and the last predicate were not both found.
+    """
+    return take_between_inclusive(iterable, lambda item: item == first, lambda item: item == last)

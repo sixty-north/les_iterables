@@ -5,7 +5,12 @@ from les_iterables.selecting import (
     retain_truthy,
     retain_falsy,
     reject_truthy,
-    reject_falsy
+    reject_falsy,
+    take_after_last_match,
+    take_after_inclusive,
+    take_before_inclusive,
+    take_between_inclusive,
+    take_between_inclusive_values,
 )
 
 __all__ = [
