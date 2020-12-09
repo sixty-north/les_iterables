@@ -1,6 +1,13 @@
 from itertools import filterfalse
 
 
+def element_at(iterable, index, *, start=0):
+    for i, item in enumerate(iterable, start):
+        if i == index:
+            return i
+    raise IndexError("No element at index {i} with given start index {start}")
+
+
 def retain_if(predicate, iterable):
     """Retain those items for which predicate evaluates to True.
 
@@ -118,13 +125,6 @@ def take_after_last_match(iterable, predicate):
         else:
             tail.append(item)
     return tail
-
-
-def first_matching(iterable, predicate):
-    for item in iterable:
-        if predicate(item):
-            return item
-    raise ValueError("No matching items")
 
 
 def take_after_inclusive(iterable, predicate):
