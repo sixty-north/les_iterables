@@ -198,3 +198,32 @@ def take_between_inclusive_values(iterable, first, last):
              matching the first predicate and the last predicate were not both found.
     """
     return take_between_inclusive(iterable, lambda item: item == first, lambda item: item == last)
+
+def previous(iterable, item):
+    """The item which comes in the series immediately before the specified item.
+
+    Args:
+        The item to search for in iterable.
+
+    Returns:
+        The previous item.
+
+    Raises:
+        ValueError: If item is not present in iterable beyond the first item.
+    """
+    iterator = iter(iterable)
+    try:
+        current = next(iterator)
+        if current == item:
+            raise ValueError(f"No item previous to {item!r} in iterable series")
+    except StopIteration:
+        raise ValueError("Iterable series is empty")
+
+    previous_item = current
+    for current in iterator:
+        if current == item:
+            return previous_item
+        previous_item = current
+    raise ValueError(f"No item {item!r} in iterable series for which to return the previous item")
+
+
