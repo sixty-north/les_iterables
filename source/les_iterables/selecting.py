@@ -1,4 +1,8 @@
-from itertools import filterfalse
+from itertools import filterfalse, tee
+
+from more_itertools import stagger
+
+from les_iterables.sentinels import MISSING
 
 
 def element_at(iterable, index, *, start=0):
@@ -191,7 +195,7 @@ def take_between_inclusive_values(iterable, first, last):
 
         first: A value marking the start of the result sequence.
 
-        last_predicate: A value marking the end of the result sequence.
+        last: A value marking the end of the result sequence.
 
         Returns:
              Either a sequence of at least two elements, or an empty sequence if elements
@@ -251,3 +255,83 @@ def succeeding(iterable, item):
         return next(iterator)
     except StopIteration:
         raise ValueError(f"No item succeeding {item!r} in iterable series")
+
+
+def relative_to(iterable, item, *, offset, n=0, default=MISSING):
+    """Return the item relative to the nth occurrence of some existing item.
+
+    Args:
+        iterable: The iterable series from which to search for item.
+        item: The value to relative to which the returned item should be.
+        offset: The positive or negative offset relative to the found item.
+        n: Where it is the nth occurrence of item which will be searched for.
+        default: The default value to return if not found.
+
+    Returns:
+        The item at a given offset from a specific value, or the default value if given.
+
+    Raises:
+        ValueError: If there is not item matching the criteria an no default
+            value has been specified.
+    """
+    count = 0
+    for p, q in stagger(iterable, (0, offset), longest=True, fillvalue=MISSING):
+        if p == item:
+            if count == n:
+                if q is MISSING:
+                    if default is MISSING:
+                        raise ValueError
+                    return default
+                return q
+            count += 1
+    if default is MISSING:
+        raise ValueError
+    return default
+
+
+
+
+def offset_iterators(iterable, offset: int):
+    """Produce two iterators which are offset from each other by a given number of items.
+
+    Once offset_iterators() has been called, and if the original itererable is an iterator
+    (as opposed to a iterablecollection), the iterator should not be used anywhere else; otherwise,
+    the iterator could get advanced without the offset_iterators objects being informed.
+
+    The produced iterators will start with the requested offset but are independent and can be
+    advanced independently. To keep them synchronized, consider iterating over them in lockstep
+    using zip().
+
+    Note that::
+
+        p, q = offset_iterators(iterable, 0)
+
+    is equivalent to::
+
+        p, q = itertools.tee(iterable)
+
+    Args:
+        iterable: An iterable from which to return two iterators separated by offset.
+        offset: An integer offset by which the two iterators should be separated. This offset can
+            be positive or negative.
+
+    Returns:
+        Two iterators, the second of which will be offset from the first by the specified number
+        (positive, negative or zero) places.
+
+    Raises:
+        ValueError: If the iterable is not long enough to accommodate two iterators separated
+            by the specified offset.
+    """
+    p, q = tee(iterable)
+    i = 0
+    try:
+        if offset > 0:
+            for i in range(offset):
+                next(q)
+        if offset < 0:
+            for i in range(-offset):
+                next(p)
+    except StopIteration:
+        raise ValueError(f"Too few items ({i}) in iterable for iterators offset by {offset} places")
+    return p, q
