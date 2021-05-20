@@ -199,11 +199,12 @@ def take_between_inclusive_values(iterable, first, last):
     """
     return take_between_inclusive(iterable, lambda item: item == first, lambda item: item == last)
 
-def previous(iterable, item):
+def preceding(iterable, item):
     """The item which comes in the series immediately before the specified item.
 
     Args:
-        The item to search for in iterable.
+        iterable: The iterable series in which to search for item.
+        item: The item to search for in iterable.
 
     Returns:
         The previous item.
@@ -215,15 +216,38 @@ def previous(iterable, item):
     try:
         current = next(iterator)
         if current == item:
-            raise ValueError(f"No item previous to {item!r} in iterable series")
+            raise ValueError(f"No item preceding {item!r} in iterable series")
     except StopIteration:
         raise ValueError("Iterable series is empty")
 
-    previous_item = current
+    previous = current
     for current in iterator:
         if current == item:
-            return previous_item
-        previous_item = current
-    raise ValueError(f"No item {item!r} in iterable series for which to return the previous item")
+            return previous
+        previous = current
+    raise ValueError(f"No item {item!r} in iterable series for which to return the preceding item")
 
 
+def succeeding(iterable, item):
+    """The item which comes in the series immediately after the specified item.
+
+    Args:
+        iterable: The iterable series in which to search for item.
+        item: The item to search for in iterable.
+
+    Returns:
+        The next item.
+
+    Raises:
+        ValueError: If the item is not present before the penultimate item.
+    """
+    iterator = iter(iterable)
+    for current in iterator:
+        if current == item:
+            break
+    else:  # nobreak
+        raise ValueError(f"No item {item!r} in iterable series for which to return the succeeding item")
+    try:
+        return next(iterator)
+    except StopIteration:
+        raise ValueError(f"No item succeeding {item!r} in iterable series")
