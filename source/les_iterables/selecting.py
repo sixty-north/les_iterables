@@ -203,6 +203,7 @@ def take_between_inclusive_values(iterable, first, last):
     """
     return take_between_inclusive(iterable, lambda item: item == first, lambda item: item == last)
 
+
 def preceding(iterable, item):
     """The item which comes in the series immediately before the specified item.
 
@@ -250,7 +251,9 @@ def succeeding(iterable, item):
         if current == item:
             break
     else:  # nobreak
-        raise ValueError(f"No item {item!r} in iterable series for which to return the succeeding item")
+        raise ValueError(
+            f"No item {item!r} in iterable series for which to return the succeeding item"
+        )
     try:
         return next(iterator)
     except StopIteration:
@@ -287,8 +290,6 @@ def relative_to(iterable, item, *, offset, n=0, default=MISSING):
     if default is MISSING:
         raise ValueError
     return default
-
-
 
 
 def offset_iterators(iterable, offset: int):

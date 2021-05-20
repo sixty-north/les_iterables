@@ -59,7 +59,7 @@ def test_relative_by_negative_one_with_default():
 
 def test_relative_by_positive_one_with_default():
     assert relative_to([4, 6, 9], 6, offset=+1, default=5) == 9
-
+œ
 
 def test_relative_by_negative_two_with_default():
     assert relative_to([2, 4, 6, 9, 7], 9, offset=-2, default=16) == 4
