@@ -24,3 +24,8 @@ def test_join_with_items_and_separators_correct_lengths():
 def test_too_few_separators_raises_value_error():
     with raises(ValueError):
         list(join_with(["A", "B", "C"], ["1"]))
+
+
+def test_one_item_and_empty_separators():
+    actual = list(join_with(["A"], []))
+    assert actual == ["A"]
