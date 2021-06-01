@@ -110,7 +110,9 @@ def split_around(iterable, predicate, group_factory=None):
     Each item for which the predicate returns True will be in its own group.
 
     Example:
-        split_around("abc\ndef\n", is_newline) -> ['a', 'b', 'c'], ['\n'], ['\n'], ['d', 'e', 'f']
+
+        split_around("abc\ndef\n", is_newline) -> ['a', 'b', 'c'], ['\n'], ['d', 'e', 'f'], ['\n']
+
 
     Args:
         iterable: An iterable series of items to be grouped.
@@ -191,13 +193,12 @@ def partition_tail(items, n):
         before consuming any items from the tail iterator.
 
     Example:
+        head, tail = partition_tail(range(10), 3)
+        for item in head:
+            print(item)  # Prints all but the last three
 
-         head, tail = partition_tail(range(10), 3)
-         for item in head:
-             print(item)  # Prints all but the last three
-
-         for item in tail:
-             print(item)  # Prints the last three
+        for item in tail:
+            print(item)  # Prints the last three
     """
 
     p = PartitionedTail(items, n)
