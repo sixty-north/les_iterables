@@ -17,7 +17,7 @@ def join_with(items, separators):
     Returns:
         The series of items alternating with items from separators. The first value yielded
         will be the first item. The last value yielded will be the last item. If items is empty
-        a empty series will be yielded.
+        an empty series will be yielded.
 
     Raises:
          ValueError: If there are too few separators to go between the supplied number of
