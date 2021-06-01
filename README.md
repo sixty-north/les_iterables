@@ -1,7 +1,9 @@
 # ![Les Itérables](docs/source/_static/les_iterables.png)
 
 [![Documentation Status](https://readthedocs.org/projects/les-iterables/badge/?version=latest)](https://les-iterables.readthedocs.io/en/latest/?badge=latest)
-      
+
+![Tests](https://github.com/sixty-north/les_iterables/actions/workflows/main.yml/badge.svg)
+
 
 ## Installation
 
