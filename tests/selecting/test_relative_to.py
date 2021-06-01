@@ -45,6 +45,7 @@ def test_relative_by_positive_two_to_oneth_occurrence():
 def test_relative_by_negative_three_to_oneth_occurrence():
     assert relative_to([2, 4, 5, 4, 6, 8, 10], 4, offset=-3, n=1) == 2
 
+
 def test_relative_to_missing_item_return_default():
     assert relative_to([4, 6, 9], 12, offset=1, default=38) == 38
 
@@ -59,7 +60,7 @@ def test_relative_by_negative_one_with_default():
 
 def test_relative_by_positive_one_with_default():
     assert relative_to([4, 6, 9], 6, offset=+1, default=5) == 9
-œ
+
 
 def test_relative_by_negative_two_with_default():
     assert relative_to([2, 4, 6, 9, 7], 9, offset=-2, default=16) == 4
