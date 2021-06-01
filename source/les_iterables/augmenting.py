@@ -32,22 +32,30 @@ def repeat_first(iterable):
 
 
 def prepend(item, iterable):
+    """Yield an item followed by an iterable.
+    """
     yield item
     yield from iterable
 
 
 def prepend_if(item, iterable, condition):
+    """Conditionally yield an item, followed by an iterable.
+    """
     if condition:
         yield item
     yield from iterable
 
 
 def append(iterable, item):
+    """Yield an iterable followed by an item.
+    """
     yield from iterable
     yield item
 
 
 def append_if(iterable, item, condition):
+    """Yield an iterable, conditionally followed by an item.
+    """
     yield from iterable
     if condition:
         yield item
@@ -76,4 +84,13 @@ def ensure_contains(items, ensured_item):
 
 
 def extend(iterable, item_factory=lambda: None):
+    """Extend an iterable by yielding items returned by a factory.
+
+    Args:
+         iterable: An iterable series of items to be extended.
+
+         items_factory: A zero-argument callable that will be invoked once
+            for reach item requested beyond the end of iterator to create
+            additional items as necessary.
+    """
     return itertools.chain(iterable, iter(item_factory, object()))

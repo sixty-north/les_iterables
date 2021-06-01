@@ -4,7 +4,7 @@
 def join_with(items, separators):
     """Generate a series of items, with separators taken from a second series.
 
-    The number of separators consumed will be one fewer than then number of items.
+    The number of separators consumed will be one fewer than the number of items.
 
     items[0], separators[0], items[1], separators[1], ..., separators[n-2], items[n-1]
 
@@ -16,7 +16,7 @@ def join_with(items, separators):
 
     Returns:
         The series of items alternating with items from separators. The first value yielded
-        will be the first item. The last value yielded will be the last item. If items in empty
+        will be the first item. The last value yielded will be the last item. If items is empty
         a empty series will be yielded.
 
     Raises:
