@@ -7,6 +7,7 @@ from .augmenting import (
     append,
     append_if,
     alternate_with,
+    separate_with,
     ensure_contains,
     extend,
 )
@@ -43,6 +44,7 @@ __all__ = [
     "append",
     "append_if",
     "alternate_with",
+    "separate_with",
     "ensure_contains",
     "extend",
     "retain_if",

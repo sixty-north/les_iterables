@@ -65,10 +65,32 @@ def alternate_with(items, alternate_item):
     """Generate a series from items, alternating with an alternate item.
 
     items[0], alternate_item, items[1], alternate_item, ... ,items[n - 1], alternate_item
+
+    The last item yielded will be alternate_item
     """
     for item in items:
         yield item
         yield alternate_item
+
+
+def separate_with(items, separator):
+    """Generate a series from items, where the original items are separated by another item.
+
+    items[0], separator, items[1], separator, items[2] ... separator, items[n]
+
+    The last item yielded will be the last element of items.
+    """
+    iterator = iter(items)
+    try:
+        item = next(iterator)
+    except StopIteration:
+        return
+
+    yield item
+
+    for item in iterator:
+        yield separator
+        yield item
 
 
 def ensure_contains(items, ensured_item):
