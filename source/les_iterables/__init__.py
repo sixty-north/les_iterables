@@ -12,6 +12,11 @@ from .augmenting import (
     extend,
 )
 
+from .parsing import (
+    range_from_text,
+    expand_numbered_list,
+)
+
 
 from .selecting import (
     retain_if,
@@ -38,27 +43,29 @@ from .combining import (
 
 __all__ = [
     "__version__",
-    "repeat_first",
-    "prepend",
-    "prepend_if",
+    "alternate_with",
     "append",
     "append_if",
-    "alternate_with",
-    "separate_with",
     "ensure_contains",
+    "expand_numbered_list",
     "extend",
-    "retain_if",
-    "reject_if",
-    "retain_truthy",
-    "retain_falsy",
-    "reject_truthy",
+    "first_matching",
+    "join_with",
+    "nth_matching",
+    "prepend",
+    "prepend_if",
+    "range_from_text",
     "reject_falsy",
-    "take_after_last_match",
+    "reject_if",
+    "reject_truthy",
+    "repeat_first",
+    "retain_falsy",
+    "retain_if",
+    "retain_truthy",
+    "separate_with",
     "take_after_inclusive",
+    "take_after_last_match",
     "take_before_inclusive",
     "take_between_inclusive",
     "take_between_inclusive_values",
-    "first_matching",
-    "nth_matching",
-    "join_with",
 ]
