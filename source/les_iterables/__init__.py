@@ -35,6 +35,7 @@ from .selecting import (
 from .searching import (
     first_matching,
     nth_matching,
+    duplicates,
 )
 
 from .combining import (
@@ -46,6 +47,7 @@ __all__ = [
     "alternate_with",
     "append",
     "append_if",
+    "duplicates",
     "ensure_contains",
     "expand_numbered_list",
     "extend",
