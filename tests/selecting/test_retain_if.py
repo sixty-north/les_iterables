@@ -2,7 +2,7 @@ from hypothesis import given
 from hypothesis.strategies import integers, lists
 
 from les_iterables import retain_if
-from tests.predicates import is_odd
+from helpers.predicates import is_odd
 
 
 @given(items=lists(integers()))

@@ -2,7 +2,7 @@ from hypothesis import given
 from hypothesis.strategies import lists, integers
 
 from les_iterables import reject_if
-from tests.predicates import is_odd, is_even
+from helpers.predicates import is_odd, is_even
 
 
 @given(items=lists(integers()))
