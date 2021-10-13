@@ -33,8 +33,6 @@ aren't in [itertools](https://docs.python.org/3/library/itertools.html) or [more
 
 ## CI/CD
 
-LOL.
-
 To release, there is a short manual process:
 
     $ bumpversion patch
