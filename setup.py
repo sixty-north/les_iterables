@@ -97,7 +97,7 @@ setup(
     extras_require={
         'dev': ['check-manifest', 'wheel', 'bumpversion', 'twine'],
         'doc': ['sphinx', 'sphinx_rtd_theme', 'better_apidoc'],
-        'test': ['coverage', 'hypothesis', 'pytest'],
+        'test': ['coverage', 'hypothesis', 'pytest', 'pytest-cov'],
     },
 
     python_requires='>=3.7',
