@@ -35,8 +35,5 @@ aren't in [itertools](https://docs.python.org/3/library/itertools.html) or [more
 
 ## CI/CD
 
-To release, there is a short manual process:
-
     $ bumpversion patch
-    $ python setup.py sdist bdist_wheel
-    $ twine upload dist/* --config-file=path/to/sixty-north.pypirc
+    $ git push origin master 
