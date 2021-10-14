@@ -2,7 +2,7 @@
 
 [![Documentation Status](https://readthedocs.org/projects/les-iterables/badge/?version=latest)](https://les-iterables.readthedocs.io/en/latest/?badge=latest)
 
-![CI](https://github.com/github/docs/actions/workflows/actions.yml/badge.svg)
+![CI](https://github.com/sixty-north/les_iterables/actions/workflows/actions.yml/badge.svg)
 
 
 [![codecov](https://codecov.io/gh/sixty-north/les_iterables/branch/master/graph/badge.svg?token=66QU3UW6N3)](https://codecov.io/gh/sixty-north/les_iterables)
