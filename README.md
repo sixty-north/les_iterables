@@ -36,4 +36,4 @@ aren't in [itertools](https://docs.python.org/3/library/itertools.html) or [more
 ## CI/CD
 
     $ bumpversion patch
-    $ git push origin master 
+    $ git push --follow-tags
