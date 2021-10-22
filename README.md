@@ -12,10 +12,6 @@
     $ pip install les_iterables
 
 
-## Tests
-
-Nope. Possibly this is simple enough that there are obviously no errors. I'll doubtless be proven wrong.
-
 ## Examples
 
 A collection of utility functions for processing iterable series which
