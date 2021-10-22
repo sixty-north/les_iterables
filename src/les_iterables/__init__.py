@@ -1,4 +1,4 @@
-from .version import __version__
+from .version import __version__, __version_info__
 
 from .augmenting import (
     repeat_first,
@@ -43,7 +43,6 @@ from .combining import (
 )
 
 __all__ = [
-    "__version__",
     "alternate_with",
     "append",
     "append_if",
