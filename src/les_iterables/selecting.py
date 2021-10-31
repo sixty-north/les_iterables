@@ -110,7 +110,7 @@ def take_after_last_match(iterable, predicate):
     """Yield items in an iterable series after the last matching.
 
     Warning:
-        This function potentially alloctates sufficient space to store
+        This function potentially allocates sufficient space to store
         the entire series.
 
     Args:
