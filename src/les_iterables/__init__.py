@@ -30,6 +30,7 @@ from .selecting import (
     take_before_inclusive,
     take_between_inclusive,
     take_between_inclusive_values,
+    skip_while,
 )
 
 from .searching import (
@@ -69,4 +70,5 @@ __all__ = [
     "take_before_inclusive",
     "take_between_inclusive",
     "take_between_inclusive_values",
+    "skip_while",
 ]

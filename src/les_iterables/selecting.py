@@ -336,3 +336,21 @@ def offset_iterators(iterable, offset: int):
     except StopIteration:
         raise ValueError(f"Too few items ({i}) in iterable for iterators offset by {offset} places")
     return p, q
+
+
+def skip_while(iterable, predicate):
+    """Skip leading items while the predicate matches.
+
+    Args:
+        iterable: An iterable of items
+        predicate: A predicate function with which to test items.
+
+    Return:
+
+    """
+    iterator = iter(iterable)
+    for item in iterator:
+        if not predicate(item):
+            yield item
+            break
+    yield from iterator
