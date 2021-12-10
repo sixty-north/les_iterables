@@ -152,6 +152,8 @@ def take_after_inclusive(iterable, predicate):
 def take_before_inclusive(iterable, predicate):
     """Yield items up to and including the first match.
 
+    If no matching item is present, the result is empty.
+
     Args:
         iterable: An iterable series of items.
 
@@ -166,6 +168,62 @@ def take_before_inclusive(iterable, predicate):
         if predicate(item):
             return items
     return []
+
+
+def take_before_exclusive(iterable, predicate):
+    """Yield items up to but excluding including the first match.
+
+    If no matching item is present, the result is empty.
+
+    Args:
+        iterable: An iterable series of items.
+
+        predicate: A function of one argument used to select the last item.
+
+    Returns:
+        A sequence of items finishing with the first match.
+    """
+    items = []
+    for item in iterable:
+        if predicate(item):
+            return items
+        items.append(item)
+    return []
+
+
+
+def take_until_inclusive(iterable, predicate):
+    """Yield items up and including the first match.
+
+    Args:
+        iterable: An iterable series of items.
+
+        predicate: A function of one argument used to select item after the last item.
+
+    Returns:
+        A series of items finishing with but excluding the first match.
+    """
+    for item in iterable:
+        yield item
+        if predicate(item):
+            return
+
+
+def take_until_exclusive(iterable, predicate):
+    """Yield items up to but excluding the first match.
+
+    Args:
+        iterable: An iterable series of items.
+
+        predicate: A function of one argument used to select item after the last item.
+
+    Returns:
+        A series of items finishing with but excluding the first match.
+    """
+    for item in iterable:
+        if predicate(item):
+            return
+        yield item
 
 
 def take_between_inclusive(iterable, first_predicate, last_predicate):

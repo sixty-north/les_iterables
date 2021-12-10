@@ -11,4 +11,3 @@ def test_take_before_inclusive_not_contains():
     items = [1, 6, 2, 9, 56]
     result = list(take_before_inclusive(items, lambda item: item == 17))
     assert result == []
-
