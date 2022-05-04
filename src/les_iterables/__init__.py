@@ -12,6 +12,10 @@ from .augmenting import (
     extend,
 )
 
+from .generating import (
+    one,
+)
+
 from .parsing import (
     range_from_text,
     expand_numbered_list,
@@ -58,6 +62,7 @@ __all__ = [
     "first_matching",
     "join_with",
     "nth_matching",
+    "one",
     "prepend",
     "prepend_if",
     "range_from_text",
