@@ -5,6 +5,20 @@ from more_itertools import stagger
 from les_iterables.sentinels import MISSING
 
 
+def single(iterable):
+    i = iter(iterable)
+    try:
+        item = next(i)
+    except StopIteration:
+        raise ValueError("Too few items")
+
+    try:
+        next(i)
+    except StopIteration:
+        return item
+    raise ValueError("Too many items")
+
+
 def element_at(iterable, index, *, start=0):
     for i, item in enumerate(iterable, start):
         if i == index:

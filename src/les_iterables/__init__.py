@@ -33,6 +33,7 @@ from .selecting import (
     take_until_inclusive,
     take_between_inclusive,
     take_between_inclusive_values,
+    single,
     skip_while,
 )
 
@@ -76,5 +77,6 @@ __all__ = [
     "take_until_inclusive",
     "take_between_inclusive",
     "take_between_inclusive_values",
+    "single",
     "skip_while",
 ]
