@@ -16,6 +16,10 @@ from .generating import (
     one,
 )
 
+from .grouping import (
+    partition_tail,
+)
+
 from .parsing import (
     range_from_text,
     expand_numbered_list,
@@ -63,6 +67,7 @@ __all__ = [
     "join_with",
     "nth_matching",
     "one",
+    "partition_tail",
     "prepend",
     "prepend_if",
     "range_from_text",
