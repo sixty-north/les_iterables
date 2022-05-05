@@ -32,12 +32,6 @@ def generate(collection=None):
     return eager
 
 
-def pairwise_padded(iterable, fillvalue=None):
-    a, b = itertools.tee(iterable)
-    next(b, fillvalue)
-    return itertools.zip_longest(a, b, fillvalue=fillvalue)
-
-
 def elements_at(seq, indexes):
     """Select elements from a sequence based on their indexes.
 

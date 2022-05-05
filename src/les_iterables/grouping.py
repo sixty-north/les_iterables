@@ -1,5 +1,5 @@
 from collections import deque
-
+from itertools import tee, zip_longest
 
 def partition_tail(items, n):
     """Lazily partition an iterable series into a head, and tail of no more than specified length.
@@ -148,3 +148,21 @@ def group_by_terminator(iterable, predicate, group_factory=None):
             group = []
     if group:
         yield group_factory(group)
+
+
+def pairwise_padded(iterable, fillvalue=None):
+    """Each item in an iterable series with its successor.
+
+    The number of pairs returned will be equal to the number of items.
+
+    Args:
+        iterable: An iterable series of items to be grouped into pairs.
+        fillvalue: The value used as the successor to the last item.
+
+    Yields:
+        A series of 2-tuples contain an item and its successor. For the last item
+        the successor will be the fillvalue.
+    """
+    a, b = tee(iterable)
+    next(b, fillvalue)
+    return zip_longest(a, b, fillvalue=fillvalue)
