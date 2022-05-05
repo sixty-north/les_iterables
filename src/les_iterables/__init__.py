@@ -17,6 +17,7 @@ from .generating import (
 )
 
 from .grouping import (
+    group_by_terminator,
     partition_tail,
     split_around,
 )
@@ -65,6 +66,7 @@ __all__ = [
     "expand_numbered_list",
     "extend",
     "first_matching",
+    "group_by_terminator",
     "join_with",
     "nth_matching",
     "one",

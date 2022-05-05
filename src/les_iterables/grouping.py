@@ -117,3 +117,34 @@ def split_around(iterable, predicate, group_factory=None):
             group.append(item)
     if group:
         yield group_factory(group)
+
+
+def group_by_terminator(iterable, predicate, group_factory=None):
+    """Group the items of of an iterable series, starting a new group after each terminator.
+
+    Each group will have as it's last item an item from which the predicate returns True. For all
+    preceding items in the group the predicate will return False.  The last group yielded may be
+    incomplete, without a terminator.
+
+    Args:
+        iterable: An iterable series of items to be grouped.
+
+        predicate: A unary callable function used to detect group-terminating items from the
+            iterable series.
+
+        group_factory: A callable which creates a group given an sequence of items. By default,
+            a list.
+
+    Yields:
+        A series of groups.
+    """
+    if group_factory is None:
+        group_factory = lambda x: x
+    group = []
+    for item in iterable:
+        group.append(item)
+        if predicate(item):
+            yield group_factory(group)
+            group = []
+    if group:
+        yield group_factory(group)
