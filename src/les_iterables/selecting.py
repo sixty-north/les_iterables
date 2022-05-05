@@ -426,3 +426,21 @@ def skip_while(iterable, predicate):
             yield item
             break
     yield from iterator
+
+
+def transform_if(iterable, predicate, transform):
+    """Apply a transformation to items which match a preducate.
+
+    Non-matching items will not be transformed.
+
+    Args:
+        iterable: An iterable of items.
+        predicate: predicate: A predicate function with which to select items to be transformed.
+        transform: A unary function which accepts an item to be transformed and returns the
+            transformed item.
+
+    Yields:
+        An iterable series of items.
+    """
+    for item in iterable:
+        yield transform(item) if predicate(item) else item

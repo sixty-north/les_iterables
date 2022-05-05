@@ -38,11 +38,6 @@ def pairwise_padded(iterable, fillvalue=None):
     return itertools.zip_longest(a, b, fillvalue=fillvalue)
 
 
-def transform_if(iterable, predicate, transform):
-    for item in iterable:
-        yield transform(item) if predicate(item) else item
-
-
 def elements_at(seq, indexes):
     """Select elements from a sequence based on their indexes.
 

@@ -43,6 +43,7 @@ from .selecting import (
     take_until_inclusive,
     take_between_inclusive,
     take_between_inclusive_values,
+    transform_if,
     single,
     skip_while,
 )
@@ -85,6 +86,7 @@ __all__ = [
     "single",
     "skip_while",
     "split_around",
+    "transform_if",
     "take_after_inclusive",
     "take_after_last_match",
     "take_before_exclusive",
