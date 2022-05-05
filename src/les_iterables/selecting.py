@@ -414,11 +414,11 @@ def skip_while(iterable, predicate):
     """Skip leading items while the predicate matches.
 
     Args:
-        iterable: An iterable of items
+        iterable: An iterable of items.
         predicate: A predicate function with which to test items.
 
-    Return:
-
+    Yields:
+        Those items including and after the first which doesn't match the predicate.
     """
     iterator = iter(iterable)
     for item in iterator:
