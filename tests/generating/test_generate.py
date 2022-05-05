@@ -16,6 +16,7 @@ def test_generate_default_returns_generator():
 
 
 def test_generate_list_returns_list():
+
     @generate(list)
     def generator_function():
         yield 1
@@ -27,6 +28,7 @@ def test_generate_list_returns_list():
 
 
 def test_generate_tuple_returns_tuple():
+
     @generate(tuple)
     def generator_function():
         yield 1
@@ -38,6 +40,7 @@ def test_generate_tuple_returns_tuple():
 
 
 def test_generate_list_returns_expected_items():
+
     @generate(list)
     def generator_function():
         yield 2

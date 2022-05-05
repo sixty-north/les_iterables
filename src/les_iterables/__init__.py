@@ -56,6 +56,10 @@ from .searching import (
     duplicates,
 )
 
+from .sequences import (
+    pop_n,
+)
+
 from .combining import (
     join_with
 )
@@ -76,6 +80,7 @@ __all__ = [
     "one",
     "pairwise_padded",
     "partition_tail",
+    "pop_n",
     "prepend",
     "prepend_if",
     "range_from_text",
