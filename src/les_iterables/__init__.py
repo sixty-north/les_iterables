@@ -14,6 +14,7 @@ from .augmenting import (
 
 from .generating import (
     one,
+    generate,
 )
 
 from .grouping import (
@@ -68,6 +69,7 @@ __all__ = [
     "expand_numbered_list",
     "extend",
     "first_matching",
+    "generate",
     "group_by_terminator",
     "join_with",
     "nth_matching",

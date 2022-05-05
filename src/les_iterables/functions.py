@@ -1,4 +1,3 @@
-import functools
 import itertools
 
 from les_iterables.augmenting import extend
@@ -14,22 +13,6 @@ def just(item):
         The item.
     """
     yield item
-
-
-def generate(collection=None):
-
-    if collection is None:
-        collection = lambda x: x
-
-    def eager(f):
-
-        @functools.wraps(f)
-        def wrapper(*args, **kwargs):
-            return collection(f(*args, **kwargs))
-
-        return wrapper
-
-    return eager
 
 
 def elements_at(seq, indexes):
