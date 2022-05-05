@@ -12,6 +12,13 @@ def test_pop_n_empty():
         pop_n(seq, 1)
 
 
+def test_pop_n_zero():
+    seq = [42]
+    popped = pop_n(seq, 0)
+    assert seq == [42]
+    assert popped == []
+
+
 def test_pop_n_one():
     seq = [42]
     popped = pop_n(seq, 1)
