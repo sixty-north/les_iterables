@@ -19,6 +19,8 @@ def pop_n(sequence, n, factory=None):
     Raises:
         IndexError: If there are fewer than n items in the sequence.
     """
+    if n < 0:
+        raise ValueError(f"Cannot pop {n} items from sequence")
     factory = factory or type(sequence)
     items = deque()
     for i in range(n):

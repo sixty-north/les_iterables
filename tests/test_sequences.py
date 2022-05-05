@@ -51,3 +51,9 @@ def test_pop_n_factory():
     popped = pop_n(seq, 2, tuple)
     assert seq == deque([45, 67])
     assert popped == (89, 12)
+
+
+def test_pop_n_negative_raises_value_error():
+    seq = deque([45, 67, 89, 12])
+    with raises(ValueError):
+        pop_n(seq, -1)
