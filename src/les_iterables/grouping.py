@@ -84,3 +84,36 @@ class TailPartitionIterator:
         if len(self._pt._d) == 0:
             raise StopIteration
         return self._pt._d.popleft()
+
+
+def split_around(iterable, predicate, group_factory=None):
+    """Split an iterable series into groups around specific items.
+
+    Each item for which the predicate returns True will be in its own group.
+
+    Args:
+        iterable: An iterable series of items to be grouped.
+
+        predicate: A unary callable to detect items which should be placed in their own group.
+
+        group_factory: A callable which creates a group given a sequence of items. By default, a
+            list.
+
+    Yields:
+        A series of groups.
+    """
+    if group_factory is None:
+        group_factory = lambda x: x
+    group = []
+    for item in iterable:
+        if predicate(item):
+            if group:
+                yield group_factory(group)
+                group = []
+            group.append(item)
+            yield group_factory(group)
+            group = []
+        else:
+            group.append(item)
+    if group:
+        yield group_factory(group)
