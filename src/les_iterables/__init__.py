@@ -59,6 +59,7 @@ from .searching import (
 from .sequences import (
     concat,
     pop_n,
+    replace_range,
 )
 
 from .combining import (
@@ -90,6 +91,7 @@ __all__ = [
     "reject_if",
     "reject_truthy",
     "repeat_first",
+    "replace_range",
     "retain_falsy",
     "retain_if",
     "retain_truthy",

@@ -55,3 +55,21 @@ def concat(sequence, *sequences):
     if issubclass(sequence_type, str):
         raise TypeError(f"Cannot concatenate str with non-string type {type(sequences[1]).__name__}")
     return sequence_type(itertools.chain.from_iterable(sequences))
+
+
+def replace_range(s, r: Union[range, slice], t):
+    """Replace the elements of s in a range with a new sequence.
+
+    Args:
+        s: The string in which a range is to be replaced.
+        r: A range or slice of indexes in s to be replaced.
+        t: The sequence with which to replace the elements of s in the range.
+
+    Returns:
+        The sequence with the elements specified by a range of indexes replaced.
+    """
+    if hasattr(r, "step") and r.step not in {1, None}:
+        raise ValueError(f"Cannot replace range specified by {type(r).__name__} with step {r.step} not equal to 1")
+    prefix = s[:r.start]
+    suffix = s[r.stop:]
+    return concat(prefix, t, suffix)
