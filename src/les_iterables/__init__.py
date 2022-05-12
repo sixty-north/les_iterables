@@ -57,6 +57,7 @@ from .searching import (
 )
 
 from .sequences import (
+    concat,
     pop_n,
 )
 
@@ -68,6 +69,7 @@ __all__ = [
     "alternate_with",
     "append",
     "append_if",
+    "concat",
     "duplicates",
     "ensure_contains",
     "expand_numbered_list",
