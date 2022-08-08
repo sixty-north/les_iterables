@@ -6,14 +6,16 @@ def range_from_text(text_range: str, separator="-") -> range:
     """A range of integers from a textual description.
 
     Args:
-        text_range: A string of the form "<first>-<last>" such as "7-10" describing the inclusive
-            ends of a range of integers.
+        text_range: A string containing an integer or a string of the form "<first>-<last>" such as
+            "7-10" describing the inclusive ends of a range of integers. Descending ranges such as
+            "10-7", open ranges such as "10-"are not supported.
 
     Returns:
         A range object.
 
     Raises:
-        ValueError: If the string could not be parsed as an ascending range of at least one item.
+        ValueError: If the string could not be parsed as an non-descending range of at least one
+        item.
     """
     if not (0 <= text_range.count(separator) <= 1):
         raise ValueError(f"Could not parse range {text_range!r}. Only positive integers are supported.")
@@ -38,11 +40,10 @@ def expand_numbered_list(text, *, separator=",", range_separator="-"):
 
     e.g. "1, 2, 5, 7-10, 15, 20-25" -> [1, 2, 5, 7, 8, 9, 10, 15, 20, 21, 22, 23, 24, 25]
 
-    Reversed ranges such as "10-7", open ranges such as "10-", and ranges with evaluate to fewer
-    than two items such as "7-7" are not supported. For the latter, use simply "7".
+    Descending ranges such as "10-7", open ranges such as "10-"are not supported.
 
     Args:
-        text: A string containing separated integers and ascending integer ranges.
+        text: A string containing separated integers and non-descending integer ranges.
         separator: The item separator. Defaults to ",".
         range_separator: The separator between the beginning and end of a range.
             Defaults to "-"
