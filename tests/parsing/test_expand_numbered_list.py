@@ -8,8 +8,27 @@ def test_expand_numbered_list_empty():
         list(expand_numbered_list(""))
 
 
+def test_open_range_raises_value_error():
+    with raises(ValueError):
+        list(expand_numbered_list("42-"))
+
+
+def test_expand_numbered_list_equal_start_and_end_raise_value_error():
+    with raises(ValueError):
+        list(expand_numbered_list("3-3"))
+
+
+def test_expand_numbered_list_reversed_range_raises_error():
+    with raises(ValueError):
+        list(expand_numbered_list("2-1"))
+
+
 def test_expand_number_list_single_term():
     assert list(expand_numbered_list("72")) == [72]
+
+
+def test_expand_numbered_list_simple_range():
+    assert list(expand_numbered_list("15-19")) == [15, 16, 17, 18, 19]
 
 
 def test_expand_numbered_list_two_terms():

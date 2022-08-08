@@ -19,10 +19,19 @@ def range_from_text(text_range: str, separator="-") -> range:
         raise ValueError(f"Could not parse range {text_range!r}. Only positive integers are supported.")
     first, sep, last = text_range.partition(separator)
     start = int(first)
-    last = last and int(last)
-    stop = last + 1 if sep else start + 1
-    if stop < start:
-        raise ValueError(f"Textual range {text_range} has start {start} after last {last}")
+    if sep:
+        if last:
+            last = last and int(last)
+            stop = last + 1
+        else:
+            raise ValueError(f"Open range {text_range!r} is not supported.")
+
+        if start == last:
+            raise ValueError(f"Only ascending ranges are not supported. To specify single-element range {text_range!r} use a single integer \'{start}\'.")
+        elif not (start < last):
+            raise ValueError(f"Only ascending ranges are not supported. Textual range {text_range} with start {start} has last {last}.")
+    else:
+        stop = start + 1
     return range(start, stop)
 
 
@@ -30,6 +39,9 @@ def expand_numbered_list(text, *, separator=",", range_separator="-"):
     """Expands a string containing numbered items into a list of integers.
 
     e.g. "1, 2, 5, 7-10, 15, 20-25" -> [1, 2, 5, 7, 8, 9, 10, 15, 20, 21, 22, 23, 24, 25]
+
+    Reversed ranges such as "10-7", open ranges such as "10-", and ranges with evaluate to fewer
+    than two items such as "7-7" are not supported. For the latter, use simply "7".
 
     Args:
         text: A string containing separated integers and ascending integer ranges.
