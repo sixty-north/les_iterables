@@ -26,10 +26,8 @@ def range_from_text(text_range: str, separator="-") -> range:
         else:
             raise ValueError(f"Open range {text_range!r} is not supported.")
 
-        if start == last:
-            raise ValueError(f"Only ascending ranges are not supported. To specify single-element range {text_range!r} use a single integer \'{start}\'.")
-        elif not (start < last):
-            raise ValueError(f"Only ascending ranges are not supported. Textual range {text_range} with start {start} has last {last}.")
+        if not (start <= last):
+            raise ValueError(f"Descending ranges are not supported. Textual range {text_range} with start {start} has last {last}.")
     else:
         stop = start + 1
     return range(start, stop)

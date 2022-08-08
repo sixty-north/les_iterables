@@ -13,11 +13,6 @@ def test_open_range_raises_value_error():
         list(expand_numbered_list("42-"))
 
 
-def test_expand_numbered_list_equal_start_and_end_raise_value_error():
-    with raises(ValueError):
-        list(expand_numbered_list("3-3"))
-
-
 def test_expand_numbered_list_reversed_range_raises_error():
     with raises(ValueError):
         list(expand_numbered_list("2-1"))
