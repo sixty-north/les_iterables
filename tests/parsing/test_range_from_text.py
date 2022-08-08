@@ -52,4 +52,4 @@ def test_range_from_negative_raises_value_error():
 
 def test_descending_range_raises_value_error():
     with raises(ValueError):
-        range_from_text("10-5")
+        range_from_text("2-1")
