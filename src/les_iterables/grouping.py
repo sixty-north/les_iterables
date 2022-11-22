@@ -206,15 +206,7 @@ def split_after_first(iterable, predicate):
 
 
 def partition(iterable, predicate, group_factory=None):
-    if group_factory is None:
-        if isinstance(iterable, str):
-            group_factory = lambda s: ''.join(s)
-        elif isinstance(iterable, list):
-            group_factory = lambda s: s
-        elif isinstance(iterable, Sequence):
-            group_factory = type(iterable)
-        else:
-            group_factory = lambda s: s
+    group_factory = _make_group_factory(iterable, group_factory)
 
     before = []
     separator = []
@@ -232,3 +224,16 @@ def partition(iterable, predicate, group_factory=None):
         group_factory(separator),
         group_factory(after),
     )
+
+
+def _make_group_factory(iterable, group_factory=None):
+    if group_factory is None:
+        if isinstance(iterable, str):
+            group_factory = lambda s: ''.join(s)
+        elif isinstance(iterable, list):
+            group_factory = lambda s: s
+        elif isinstance(iterable, Sequence):
+            group_factory = type(iterable)
+        else:
+            group_factory = lambda s: s
+    return group_factory
