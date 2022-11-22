@@ -11,14 +11,29 @@ def test_split_after_first_non_matching_predicate_returns_one_group():
     assert actual == [[1, 2, 3]]
 
 
+def test_split_string_after_first_non_matching_predicate_returns_one_group():
+    actual = list(split_after_first('abcd', lambda x: x == 'n'))
+    assert actual == ['abcd']
+
+
 def test_split_after_first_matching_predicate_in_the_beginning_returns_two_groups():
     actual = list(split_after_first([1, 2, 3], lambda x: x == 1))
     assert actual == [[1], [2, 3]]
 
 
+def test_split_tuple_after_first_matching_predicate_in_the_beginning_returns_two_groups():
+    actual = list(split_after_first((1, 2, 3), lambda x: x == 1))
+    assert actual == [(1,), (2, 3)]
+
+
 def test_split_after_first_matching_predicate_in_the_middle_returns_two_groups():
     actual = list(split_after_first([1, 2, 3], lambda x: x == 2))
     assert actual == [[1, 2], [3]]
+
+
+def test_split_string_after_first_matching_predicate_in_the_middle_returns_two_groups():
+    actual = list(split_after_first('abcde', lambda x: x == 'c'))
+    assert actual == ['abc', 'de']
 
 
 def test_split_after_first_matching_predicate_at_the_end_returns_one_group():

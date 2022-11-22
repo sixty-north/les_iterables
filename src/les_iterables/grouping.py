@@ -169,7 +169,7 @@ def pairwise_padded(iterable, fillvalue=None):
     return zip_longest(a, b, fillvalue=fillvalue)
 
 
-def split_after_first(iterable, predicate):
+def split_after_first(iterable, predicate, group_factory=None):
     """Split the iterable after the element matching the predicate.
 
     Always returns at least 1 group, and no more than 2 groups.
@@ -184,25 +184,28 @@ def split_after_first(iterable, predicate):
             assert group == [1, 2]
             assert groups == [[3, 1, 2, 3]]
 
-
             group, *groups = split_after_first([1, 2, 3], lambda x: x == 3)
             assert group == [1, 2, 3]
             assert groups == []
 
+            group, *groups = split_after_first('abcde', lambda x: x == 'c')
+            assert group ==  'abc'
+            assert groups == ['de']
+
     Returns:
         An iterable series of groups.
     """
-    # TODO: Add a group factory
+    group_factory = _make_group_factory(iterable, group_factory)
     group = []
     iterator = iter(iterable)
     for item in iterator:
         group.append(item)
         if predicate(item):
             break
-    yield group
+    yield group_factory(group)
     remainder = list(iterator)
     if remainder:
-        yield remainder
+        yield group_factory(remainder)
 
 
 def partition(iterable, predicate, group_factory=None):
