@@ -22,6 +22,7 @@ from .grouping import (
     pairwise_padded,
     partition_tail,
     split_around,
+    split_after_first,
 )
 
 from .parsing import (
@@ -99,6 +100,7 @@ __all__ = [
     "single",
     "skip_while",
     "split_around",
+    "split_after_first",
     "transform_if",
     "take_after_inclusive",
     "take_after_last_match",
