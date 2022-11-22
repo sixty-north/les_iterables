@@ -191,6 +191,7 @@ def split_after_first(iterable, predicate):
     Returns:
         An iterable series of groups.
     """
+    # TODO: Add a group factory
     group = []
     iterator = iter(iterable)
     for item in iterator:
