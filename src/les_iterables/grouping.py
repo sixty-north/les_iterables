@@ -166,3 +166,38 @@ def pairwise_padded(iterable, fillvalue=None):
     a, b = tee(iterable)
     next(b, fillvalue)
     return zip_longest(a, b, fillvalue=fillvalue)
+
+
+def split_after_first(iterable, predicate):
+    """Split the iterable after the element matching the predicate.
+
+    Always returns at least 1 group, and no more than 2 groups.
+    If there is no element matching the predicate, the iterable is returned unchanged.
+    If the iterable is empty, returns a single empty group.
+
+    Examples:
+
+        ::
+
+            group, *groups = split_after_first([1, 2, 3, 1, 2, 3], lambda x: x == 2))
+            assert group == [1, 2]
+            assert groups == [[3, 1, 2, 3]]
+
+
+            group, *groups = split_after_first([1, 2, 3], lambda x: x == 3)
+            assert group == [1, 2, 3]
+            assert groups == []
+
+    Returns:
+        An iterable series of groups.
+    """
+    group = []
+    iterator = iter(iterable)
+    for item in iterator:
+        group.append(item)
+        if predicate(item):
+            break
+    yield group
+    remainder = list(iterator)
+    if remainder:
+        yield remainder
