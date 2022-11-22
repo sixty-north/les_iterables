@@ -1,4 +1,5 @@
 from collections import deque
+from collections.abc import Sequence
 from itertools import tee, zip_longest
 
 def partition_tail(items, n):
@@ -202,3 +203,32 @@ def split_after_first(iterable, predicate):
     remainder = list(iterator)
     if remainder:
         yield remainder
+
+
+def partition(iterable, predicate, group_factory=None):
+    if group_factory is None:
+        if isinstance(iterable, str):
+            group_factory = lambda s: ''.join(s)
+        elif isinstance(iterable, list):
+            group_factory = lambda s: s
+        elif isinstance(iterable, Sequence):
+            group_factory = type(iterable)
+        else:
+            group_factory = lambda s: s
+
+    before = []
+    separator = []
+
+    iterator = iter(iterable)
+    for item in iterator:
+        if not predicate(item):
+            before.append(item)
+        else:
+            separator.append(item)
+            break
+    after = list(iterator)
+    return (
+        group_factory(before),
+        group_factory(separator),
+        group_factory(after),
+    )

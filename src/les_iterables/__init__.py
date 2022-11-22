@@ -20,6 +20,7 @@ from .generating import (
 from .grouping import (
     group_by_terminator,
     pairwise_padded,
+    partition,
     partition_tail,
     split_around,
     split_after_first,
@@ -83,6 +84,7 @@ __all__ = [
     "nth_matching",
     "one",
     "pairwise_padded",
+    "partition",
     "partition_tail",
     "pop_n",
     "prepend",
