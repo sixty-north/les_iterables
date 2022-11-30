@@ -89,6 +89,20 @@ def reject_if_none(iterable):
     return reject_if(lambda item: item is None, iterable)
 
 
+def retain_if_not_none(iterable):
+    """Retain those items which are not None.
+
+    Example:
+
+        >>> list(retain_if_not_none(, [1, 3, None, 7, None]))
+        [1, 3, 7]
+
+    Returns:
+        An iterable series of items without None values.
+    """
+    return retain_if(lambda item: item is not None, iterable)
+
+
 def retain_truthy(iterable):
     """Retain those items which evaluate to True in a boolean context.
 

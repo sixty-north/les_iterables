@@ -34,6 +34,7 @@ from .parsing import (
 
 from .selecting import (
     retain_if,
+    retain_if_not_none,
     reject_if,
     reject_if_none,
     retain_truthy,
@@ -99,6 +100,7 @@ __all__ = [
     "replace_range",
     "retain_falsy",
     "retain_if",
+    "retain_if_not_none",
     "retain_truthy",
     "separate_with",
     "single",
