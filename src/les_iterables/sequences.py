@@ -73,3 +73,71 @@ def replace_range(s, r: Union[range, slice], t):
     prefix = s[:r.start]
     suffix = s[r.stop:]
     return concat(prefix, t, suffix)
+
+
+def append_unique(sequence, item) -> bool:
+    """Append an item to a sequence if it is not already present.
+
+    Args:
+        sequence: The sequence to which the item is to be appended.
+        item: The item to be appended.
+
+    Returns:
+        True if the item was appended, False if it was already present.
+    """
+    if item not in sequence:
+        sequence.append(item)
+        return True
+    return False
+
+
+def prepend_unique(sequence, item) -> bool:
+    """Prepend an item to a sequence if it is not already present.
+
+    Args:
+        sequence: The sequence to which the item is to be prepended.
+        item: The item to be prepended.
+
+    Returns:
+        True if the item was prepended, False if it was already present.
+    """
+    if item not in sequence:
+        sequence.insert(0, item)
+        return True
+    return False
+
+
+def insert_unique(sequence, index, item) -> bool:
+    """Insert an item into a sequence if it is not already present.
+
+    Args:
+        sequence: The sequence into which the item is to be inserted.
+        index: The index at which the item is to be inserted.
+        item: The item to be inserted.
+
+    Returns:
+        True if the item was inserted, False if it was already present.
+    """
+    if item not in sequence:
+        sequence.insert(index, item)
+        return True
+    return False
+
+
+def extend_unique(sequence, items) -> set:
+    """Extend a sequence with items which are not already present.
+
+    Args:
+        sequence: The sequence to which the items are to be appended.
+        items: The items to be appended.
+
+    Returns:
+        A set of the items which were appended.
+    """
+    existing = set(sequence)
+    added = set()
+    for item in items:
+        if item not in existing and item not in added:
+            sequence.append(item)
+            added.add(item)
+    return added
