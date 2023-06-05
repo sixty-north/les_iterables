@@ -460,7 +460,7 @@ def skip_while(iterable, predicate):
 
 
 def transform_if(iterable, predicate, transform):
-    """Apply a transformation to items which match a preducate.
+    """Apply a transformation to items which match a predicate.
 
     Non-matching items will not be transformed.
 
