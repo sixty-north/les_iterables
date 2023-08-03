@@ -1,4 +1,7 @@
-from collections import defaultdict
+import operator
+
+from collections.abc import Iterable, Callable
+from typing import Any
 
 from les_iterables import retain_if
 from les_iterables.selecting import element_at
@@ -73,3 +76,45 @@ def duplicates(iterable, key=None):
         if seen:
             yield item
         appender(seen_keys, k)
+
+
+def run_delimited_range(items: Iterable[Any], comparator: Callable[[Any, Any], bool] = operator.eq) -> range:
+    """Extract the inner range of indices delimited by continuous runs of elements.
+
+    The continuity of the run is established by the passed comparator.
+
+    Example:
+        Using the default comparator (equality):
+         0  1  2  3  4  5   6   7   8  9  10  11
+        [1, 1, 1, 3, 3, 8, 15, 15, 15, 8, 18, 18] -> range(3, 10)
+
+        Using the sign comparator:
+          0   1  2   3   4   5   6
+        [-5, -1, 3, -8, 14, -2, -1] -> range(2, 5)
+
+        Using the type comparator:
+        ["0", "1", "2", [3], 4, "5", 6, 7] -> range(3, 6)
+
+    Returns:
+        A range of indices of the extracted part.
+    """
+    start_index = 0
+    stop_index = 0
+    run_exemplar = None
+
+    iterator = iter(items)
+    for i, item in enumerate(iterator):
+        if i == 0:
+            run_exemplar = item
+        else:
+            if not comparator(run_exemplar, item):
+                start_index = i
+                run_exemplar = item
+                break
+
+    for i, item in enumerate(iterator, start=start_index + 1):
+        if not comparator(run_exemplar, item):
+            stop_index = i
+            run_exemplar = item
+
+    return range(start_index, stop_index)
