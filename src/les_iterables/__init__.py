@@ -58,6 +58,7 @@ from .searching import (
     first_matching,
     nth_matching,
     duplicates,
+    run_delimited_range,
 )
 
 from .sequences import (
@@ -110,6 +111,7 @@ __all__ = [
     "retain_if",
     "retain_if_not_none",
     "retain_truthy",
+    "run_delimited_range",
     "separate_with",
     "single",
     "skip_while",
