@@ -18,6 +18,7 @@ from .generating import (
 )
 
 from .grouping import (
+    complete_chunks,
     group_by_terminator,
     pairwise_padded,
     partition,
@@ -80,6 +81,7 @@ __all__ = [
     "append",
     "append_if",
     "append_unique",
+    "complete_chunks",
     "concat",
     "duplicates",
     "ensure_contains",

@@ -2,6 +2,9 @@ from collections import deque
 from collections.abc import Sequence
 from itertools import tee, zip_longest
 
+from more_itertools import chunked
+
+
 def partition_tail(items, n):
     """Lazily partition an iterable series into a head, and tail of no more than specified length.
 
@@ -240,3 +243,20 @@ def _make_group_factory(iterable, group_factory=None):
         else:
             group_factory = lambda s: s
     return group_factory
+
+
+def complete_chunks(iterable, n, group_factory=None):
+    """Break an iterable series into chunks of a specified size. Incomplete chunks are discarded.
+
+    Args:
+        iterable: The iterable series to be chunked.
+        n: The size of each chunk.
+        group_factory: A callable which creates a group given a sequence of items.
+
+    Yields:
+        A series of groups of size n.
+    """
+    group_factory = _make_group_factory(iterable, group_factory)
+    for chunk in chunked(iterable, n):
+        if len(chunk) == n:
+            yield group_factory(chunk)
