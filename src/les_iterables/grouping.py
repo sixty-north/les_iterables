@@ -121,7 +121,7 @@ def split_around(iterable, predicate, group_factory=None):
 
 
 def group_by_terminator(iterable, predicate, group_factory=None):
-    """Group the items of of an iterable series, starting a new group after each terminator.
+    """Group the items of an iterable series, starting a new group after each terminator.
 
     Each group will have as it's last item an item from which the predicate returns True. For all
     preceding items in the group the predicate will return False.  The last group yielded may be
