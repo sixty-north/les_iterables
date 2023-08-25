@@ -1,6 +1,6 @@
 import operator
 
-from collections.abc import Iterable, Callable
+from collections.abc import Iterable, Callable, Sequence
 from typing import Any
 
 from les_iterables import retain_if
@@ -98,10 +98,19 @@ def run_delimited_range(items: Iterable[Any], comparator: Callable[[Any, Any], b
     Returns:
         A range of indices of the extracted part.
     """
+    if isinstance(items, Sequence):
+        return _run_delimited_range_seq(items, comparator)
+
+    return _run_delimited_range_iter(items, comparator)
+
+
+def _run_delimited_range_iter(
+    items: Iterable[Any],
+    comparator: Callable[[Any, Any], bool],
+):
     start_index = 0
     stop_index = 0
     run_exemplar = None
-
     iterator = iter(items)
     for i, item in enumerate(iterator):
         if i == 0:
@@ -111,10 +120,16 @@ def run_delimited_range(items: Iterable[Any], comparator: Callable[[Any, Any], b
                 start_index = i
                 run_exemplar = item
                 break
-
     for i, item in enumerate(iterator, start=start_index + 1):
         if not comparator(run_exemplar, item):
             stop_index = i
             run_exemplar = item
-
     return range(start_index, stop_index)
+
+
+def _run_delimited_range_seq(
+    items: Sequence[Any],
+    comparator: Callable[[Any, Any], bool],
+):
+    # TODO: Implement a more efficient version of this function for sequences
+    return _run_delimited_range_iter(items, comparator)
