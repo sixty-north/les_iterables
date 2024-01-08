@@ -1,5 +1,10 @@
 """Functions for combining iterable series.
 """
+from collections.abc import Iterable, Callable, Sequence
+from typing import Any, Optional
+
+from les_iterables.functions import false
+
 
 def join_with(items, separators):
     """Generate a series of items, with separators taken from a second series.
@@ -39,3 +44,33 @@ def join_with(items, separators):
             raise ValueError("Too few separators to join_with items")
         yield separator
         yield item
+
+
+def flatten(items: Iterable[Any], not_flatten=None) -> Iterable[Any]:
+    """Flatten a series of items into a series of items and subitems.
+
+    Args:
+        items: The series of items to flatten.
+        not_flatten: A function that returns True if an item should not be flattened.
+
+    Returns:
+        A series of items and subitems. Each item will be yielded before its subitems.
+
+    Examples:
+        ::
+            >>> list(flatten([1, [2, "hello"], 4], lambda x: isinstance(x, str)))
+            [1, 2, "hello", 4]
+    """
+    not_flatten = not_flatten or false
+    if not_flatten(items):
+        yield items
+    else:
+        for item in items:
+            # Prevent infinite recursion on sequence types which contain themselves, such as strings.
+            if isinstance(item, Sequence) and len(item) == 1:
+                yield item[0]
+            else:
+                try:
+                    yield from flatten(item, not_flatten)
+                except TypeError:
+                    yield item

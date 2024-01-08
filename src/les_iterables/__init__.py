@@ -73,7 +73,8 @@ from .sequences import (
 )
 
 from .combining import (
-    join_with
+    join_with,
+    flatten,
 )
 
 __all__ = [
@@ -89,6 +90,7 @@ __all__ = [
     "extend",
     "extend_unique",
     "first_matching",
+    "flatten",
     "generate",
     "group_by_terminator",
     "insert_unique",

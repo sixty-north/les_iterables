@@ -2,6 +2,8 @@ import itertools
 from collections import deque
 from typing import Union
 
+from les_iterables.functions import false
+
 
 def pop_n(sequence, n, factory=None):
     """Remove n items from the end of a sequence.

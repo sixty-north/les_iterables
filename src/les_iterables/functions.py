@@ -87,3 +87,12 @@ def true_then_false():
     yield True
     while True:
         yield False
+
+
+def true(*args, **kwargs):
+    return True
+
+
+def false(*args, **kwargs):
+    return False
+
