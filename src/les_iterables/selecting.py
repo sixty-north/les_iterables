@@ -323,6 +323,42 @@ def take_between_inclusive_values(iterable, first, last):
     return take_between_inclusive(iterable, lambda item: item == first, lambda item: item == last)
 
 
+def take_between_exclusive(iterable, first_predicate, last_predicate):
+    """A list of items from the first matching to the last matching exclusive.
+
+    Args:
+        iterable: An iterable series of items.
+
+        first_predicate: A function of one argument used to select the first item before
+            the result.
+
+        last_predicate: A function of one argument used to select the first item after
+            the result.
+
+        Returns:
+             A sequence of items between the first matching and the last matching. If either
+                the first or last matching is not found, the result will be empty.
+    """
+    return take_before_exclusive(take_after_exclusive(iterable, first_predicate), last_predicate)
+
+
+def take_between_exclusive_values(iterable, first, last):
+    """A list of items from the first matching to the last matching exclusive.
+
+    Args:
+        iterable: An iterable series of items.
+
+        first: A value marking the start of the result sequence.
+
+        last: A value marking the end of the result sequence.
+
+        Returns:
+             A sequence of items between the first matching and the last matching. If either
+                the first or last matching is not found, the result will be empty.
+    """
+    return take_between_exclusive(iterable, lambda item: item == first, lambda item: item == last)
+
+
 def preceding(iterable, item):
     """The item which comes in the series immediately before the specified item.
 

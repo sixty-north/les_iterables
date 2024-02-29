@@ -49,6 +49,8 @@ from .selecting import (
     take_before_inclusive,
     take_until_exclusive,
     take_until_inclusive,
+    take_between_exclusive,
+    take_between_exclusive_values,
     take_between_inclusive,
     take_between_inclusive_values,
     transform_if,
@@ -129,6 +131,8 @@ __all__ = [
     "take_before_inclusive",
     "take_until_exclusive",
     "take_until_inclusive",
+    "take_between_exclusive",
+    "take_between_exclusive_values",
     "take_between_inclusive",
     "take_between_inclusive_values",
 ]
