@@ -194,6 +194,22 @@ def take_after_inclusive(iterable, predicate):
             yield item
 
 
+def take_after_exclusive(iterable, predicate):
+    """Yield items in an iterable series after the first matching.
+
+    Args:
+        iterable: An iterable series of items.
+
+        predicate: A function of one argument used to select items.
+    """
+    found = False
+    for item in iterable:
+        if found:
+            yield item
+        else:
+            found = predicate(item)
+
+
 def take_before_inclusive(iterable, predicate):
     """Yield items up to and including the first match.
 

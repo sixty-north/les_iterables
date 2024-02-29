@@ -43,6 +43,7 @@ from .selecting import (
     reject_truthy,
     reject_falsy,
     take_after_last_match,
+    take_after_exclusive,
     take_after_inclusive,
     take_before_exclusive,
     take_before_inclusive,
