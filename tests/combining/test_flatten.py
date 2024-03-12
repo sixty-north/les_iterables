@@ -1,4 +1,3 @@
-from les_iterables import concat
 from les_iterables.combining import flatten
 
 
@@ -12,6 +11,10 @@ def test_flatten_single_item():
 
 def test_flatten_string():
     assert list(flatten("abc")) == ['a', 'b', 'c']
+
+
+def test_flatten_single_element_list():
+    assert list(flatten([["abc"]])) == ['a', 'b', 'c']
 
 
 def test_dont_flatten_string():

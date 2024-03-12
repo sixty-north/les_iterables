@@ -66,8 +66,8 @@ def flatten(items: Iterable[Any], not_flatten=None) -> Iterable[Any]:
         yield items
     else:
         for item in items:
-            # Prevent infinite recursion on sequence types which contain themselves, such as strings.
-            if isinstance(item, Sequence) and len(item) == 1:
+            # Prevent infinite recursion on strings where the elements are single-character strings.
+            if isinstance(item, str) and len(item) == 1:
                 yield item[0]
             else:
                 try:
