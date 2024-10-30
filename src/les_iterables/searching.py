@@ -1,7 +1,8 @@
 import operator
 
 from collections.abc import Iterable, Callable, Sequence
-from typing import Any
+from itertools import pairwise
+from typing import Any, Optional
 
 from les_iterables import retain_if
 from les_iterables.selecting import element_at
@@ -133,3 +134,39 @@ def _run_delimited_range_seq(
 ):
     # TODO: Implement a more efficient version of this function for sequences
     return _run_delimited_range_iter(items, comparator)
+
+
+def edge_index(items: Iterable[Any], sign: int, n: Optional[int]=None, predicate: Optional[Callable[[Any], bool]] = None) -> int:
+    """The index of the first item after the edge.
+
+    Args:
+        items: A series of items.
+
+        sign: +1 for a positive-going edge, -1 for a negative-going edge.
+
+        n: The index of the edge to find. If n is None the zeroth matching edge will be found.
+
+        predicate: An optional predicate to be applied to each item to convert it to a boolean
+            value. The default predicate is the identity function.
+
+    Returns:
+        The index of the first item after the detected edge, or -1 if no edge is detected.
+    """
+    if sign not in {-1, +1}:
+        raise ValueError("sign must be -1 or +1")
+
+    if n is None:
+        n = 0
+
+    if n < 0:
+        raise ValueError("n must be non-negative")
+
+    predicate = predicate or bool
+
+    found_index = -1
+    for i, (a, b) in enumerate(pairwise(map(predicate, items))):
+        if b - a == sign:
+            found_index += 1
+            if found_index == n:
+                return i + 1
+    return -1  # No nth edge found

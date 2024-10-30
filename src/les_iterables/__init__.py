@@ -63,6 +63,7 @@ from .searching import (
     nth_matching,
     duplicates,
     run_delimited_range,
+    edge_index,
 )
 
 from .sequences import (
