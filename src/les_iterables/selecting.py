@@ -22,7 +22,7 @@ def single(iterable):
 def element_at(iterable, index, *, start=0):
     for i, item in enumerate(iterable, start):
         if i == index:
-            return i
+            return item
     raise IndexError("No element at index {i} with given start index {start}")
 
 
