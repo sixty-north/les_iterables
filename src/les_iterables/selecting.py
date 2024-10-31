@@ -20,6 +20,21 @@ def single(iterable):
 
 
 def element_at(iterable, index, *, start=0):
+    """Return the item at a given index in an iterable series.
+
+    Args:
+        iterable: The iterable series of items.
+        index: The index of the item to return. Indexing from the back with negative values is
+            not supported.
+        start: The index of the first item in the series. The default is zero.
+
+    Raises:
+        IndexError: If the index is less than the start index.
+        IndexError: If the index is not present in the series.
+    """
+    if index < start:
+        raise IndexError(f"index {index} is less than start index {start}")
+
     for i, item in enumerate(iterable, start):
         if i == index:
             return item
