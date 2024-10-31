@@ -34,6 +34,7 @@ from .parsing import (
 
 
 from .selecting import (
+    element_at,
     retain_if,
     retain_if_not_none,
     reject_if,
