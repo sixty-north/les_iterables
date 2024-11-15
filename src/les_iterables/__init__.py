@@ -33,6 +33,11 @@ from .parsing import (
 )
 
 
+from .functions import (
+    elements_at,
+)
+
+
 from .selecting import (
     element_at,
     retain_if,
